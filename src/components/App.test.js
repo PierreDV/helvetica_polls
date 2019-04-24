@@ -1,5 +1,9 @@
-import { mount } from "enzyme";
+import React from 'react';
+import { shallow } from "enzyme";
 
 describe("The SwissVote app", () => {
-  it("is a data-visualization UI", () => {});
+  it("checks that the ResultsTable component renders content from its props", () => {
+    const tableComponent = shallow(<ResultsTable {...mockResult} />);
+    expect(tableComponent.contains(<caption>{mockResult.description.en}</caption>));
+  });
 });
