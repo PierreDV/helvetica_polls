@@ -1,6 +1,8 @@
 import React from "react";
 import "../css/App.css";
 
+import ResultsTable from './ResultsTable';
+
 const mockResult = {
   description: {
     de: "Nationalbankgewinne für die AHV",
@@ -145,9 +147,7 @@ const mockResult = {
 function App() {
   return (
     <div>
-      This is the Swiss-Vote starter package.
-      <br />
-      Get to work!
+      <ResultsTable {...mockResult}/>
     </div>
   );
 }

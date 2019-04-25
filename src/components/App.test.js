@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from "enzyme";
+import ResultsTable from './ResultsTable';
 
 const mockResult = {
   description: {
@@ -142,9 +143,9 @@ const mockResult = {
   ]
 };
 
-describe("The SwissVote app", () => {
+describe("ResultsTable", () => {
   it("checks that the ResultsTable component renders content from its props", () => {
     const tableComponent = shallow(<ResultsTable {...mockResult} />);
-    expect(tableComponent.contains(<caption>{mockResult.description.en}</caption>));
+    expect(tableComponent.contains(<caption>{mockResult.description.en}</caption>)).toEqual(true);
   });
 });
