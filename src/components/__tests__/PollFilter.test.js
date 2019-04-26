@@ -12,7 +12,7 @@ describe('PollFilter', () => {
       "Asylum Act"
     ];
     initialSelectedPoll = polls[0];
-    component = shallow(<PollFilter polls={polls} />);
+    component = shallow(<PollFilter handleChange={jest.fn()} polls={polls} />);
   });
 
   it('checks the initial state and select element values', () => {

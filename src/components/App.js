@@ -4,10 +4,18 @@ import ResultsTable from './ResultsTable';
 import PollFilter from './PollFilter';
 
 class App extends Component {
+  handlePollFilterChange = this.handlePollFilterChange.bind(this);
+
   state = { 
     results: [],
     selectedPoll: 0
   };
+
+  handlePollFilterChange(selectedPoll) {
+    this.setState({
+      selectedPoll: selectedPoll
+    });
+  }
 
   componentDidMount() {
     fetch('./swiss-vote-results-sample.json')
@@ -20,7 +28,7 @@ class App extends Component {
     const { results, selectedPoll } = this.state;
     return(
       <div>
-        <PollFilter polls={results.map(result => result.description.en)}/>
+        <PollFilter handleChange={this.handlePollFilterChange} polls={results.map(result => result.description.en)}/>
         <ResultsTable {...results[selectedPoll]}/>
       </div>
     ); 

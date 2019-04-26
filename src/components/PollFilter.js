@@ -16,6 +16,7 @@ class PollFilter extends Component {
 
   handleChange = event => {
     this.setState({ selectedPoll: event.target.value });
+    this.props.handleChange(this.state.selectedPoll);
   }
 
   render() {
