@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import "../css/App.css";
-
 import ResultsTable from './ResultsTable';
 
 class App extends Component {
-  state = {
-    mockResult: {}
-  };
+  state = { results: {} };
 
   componentDidMount() {
     fetch('./swiss-vote-results-sample.json')
@@ -16,11 +13,7 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <ResultsTable {...this.state.mockResult[0]}/>
-      </div>
-    );
+    return <ResultsTable {...this.state.results[0]}/>;
   }
 }
 
