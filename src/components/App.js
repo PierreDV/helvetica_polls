@@ -4,16 +4,14 @@ import ResultsTable from './ResultsTable';
 import PollFilter from './PollFilter';
 
 class App extends Component {
-  handlePollFilterChange = this.handlePollFilterChange.bind(this);
-
   state = { 
     results: [],
     selectedPoll: 0
   };
 
-  handlePollFilterChange(selectedPoll) {
+  handlePollFilterChange = (event) => {
     this.setState({
-      selectedPoll: selectedPoll
+      selectedPoll: event.target.value
     });
   }
 
@@ -28,7 +26,11 @@ class App extends Component {
     const { results, selectedPoll } = this.state;
     return(
       <div>
-        <PollFilter handleChange={this.handlePollFilterChange} polls={results.map(result => result.description.en)}/>
+        <PollFilter 
+          handleChange={this.handlePollFilterChange} 
+          selectedPoll={this.state.selectedPoll} 
+          polls={results.map(result => result.description.en)}
+        />
         <ResultsTable {...results[selectedPoll]}/>
       </div>
     ); 

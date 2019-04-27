@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import PollFilter from '../PollFilter';
 
 describe('PollFilter', () => {
@@ -12,11 +12,17 @@ describe('PollFilter', () => {
       "Asylum Act"
     ];
     initialSelectedPoll = polls[0];
-    component = shallow(<PollFilter handleChange={jest.fn()} polls={polls} />);
+    component = mount(
+      <PollFilter 
+        handleChange={jest.fn()} 
+        polls={polls} 
+        selectedPoll={initialSelectedPoll} 
+      />
+    );
   });
 
   it('checks the initial state and select element values', () => {
-    expect(component.state().selectedPoll).toBe(initialSelectedPoll);
+    expect(component.props().selectedPoll).toBe(initialSelectedPoll);
     expect(component.find("select").props().value).toBe(initialSelectedPoll);
   });
 
@@ -26,8 +32,8 @@ describe('PollFilter', () => {
     component
       .find("select")
       .simulate("change", { target: { value: updatedSelectedPoll } });
-    
-    expect(component.state().selectedPoll).toBe(updatedSelectedPoll);
+
+    expect(component.props().selectedPoll).toBe(updatedSelectedPoll);
     expect(component.find("select").props().value).toBe(updatedSelectedPoll);
   });
 });
