@@ -33,7 +33,6 @@ describe('PollFilter', () => {
       .find("select")
       .simulate("change", { target: { value: updatedSelectedPoll } });
 
-    expect(component.props().selectedPoll).toBe(updatedSelectedPoll);
-    expect(component.find("select").props().value).toBe(updatedSelectedPoll);
+    expect(component.props().handleChange).toHaveBeenCalledTimes(1);
   });
 });
