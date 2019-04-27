@@ -21,6 +21,10 @@ describe('PollFilter', () => {
     );
   });
 
+  afterEach(() => {
+    component.unmount();
+  });
+
   it('checks the initial state and select element values', () => {
     expect(component.props().selectedPoll).toBe(initialSelectedPoll);
     expect(component.find("select").props().value).toBe(initialSelectedPoll);
