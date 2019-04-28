@@ -15,7 +15,7 @@ describe('PollFilter', () => {
     component = mount(
       <PollFilter 
         handleChange={jest.fn()} 
-        polls={polls} 
+        results={polls} 
         selectedPoll={initialSelectedPoll} 
       />
     );
