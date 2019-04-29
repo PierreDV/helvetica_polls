@@ -6,13 +6,14 @@ import ResultsTable from './ResultsTable';
 
 class App extends Component {
   state = { 
-    results: [],
-    selectedPoll: 0
+    results: {},
+    selectedPoll: ""
   };
 
-  handlePollFilterChange = (event) => {
+  handlePollFilterChange = selection => {
+    console.log(selection)
     this.setState({
-      selectedPoll: event.target.value
+      selectedPoll: selection
     });
   }
 
@@ -24,7 +25,6 @@ class App extends Component {
   }
 
   render() {
-    const { results, selectedPoll } = this.state;
     return(
       <div>
         <PollFilter 
@@ -32,7 +32,7 @@ class App extends Component {
           {...this.state}
         />
         <figure>
-          <Map {...results[selectedPoll]}>
+          <Map {...this.state.selectedPoll}>
             <ResultsTable />
           </Map>
         </figure>
