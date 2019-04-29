@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../css/App.css";
 import PollFilter from './PollFilter';
 import Map from './Map';
+import ResultsTable from './ResultsTable';
 
 class App extends Component {
   state = { 
@@ -31,7 +32,9 @@ class App extends Component {
           {...this.state}
         />
         <figure>
-          <Map {...results[selectedPoll]} />
+          <Map {...results[selectedPoll]}>
+            <ResultsTable />
+          </Map>
         </figure>
         
       </div>

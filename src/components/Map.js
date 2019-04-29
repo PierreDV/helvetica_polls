@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
 import { drawCanvas } from '../helpers.js';
-import ResultsTable from './ResultsTable';
 import "../css/Map.css";
 
 class Map extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showMap: true
-    }
-    this.canvas = React.createRef();
-  }
+  canvas = React.createRef();
 
   componentDidMount() {
     this.ctx = this.canvas.current.getContext("2d");
@@ -22,24 +15,14 @@ class Map extends Component {
     drawCanvas(this.ctx, this.props.results);
   }
 
-  renderResults() {
-    if(this.state.showMap) {
-      return(
-        <div>
-          <canvas ref={this.canvas}></canvas> 
-          <button onClick={() => {this.setState({showMap: false})}}>Results Table</button>
-        </div>
-      )  
-    } else {
-      return(
-        <div>
-          <ResultsTable results={this.props.results} />
-        </div>
-      )
-    }
+  render() { 
+    const { description, results } = this.props;
+    return(
+      <canvas height={538} width={840} ref={this.canvas}>
+        {React.cloneElement(this.props.children, { description, results })}
+      </canvas> 
+    )
   }
-
-  render() { return this.renderResults() }
 }
 
 export default Map;
